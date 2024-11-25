@@ -24,7 +24,7 @@ app.get('/membership-discount', (req, res) => {
   let isMember = req.query.isMember === 'true';
 
   let finalPrice = isMember
-    ? cartTotal - (cartTotal * discountPercentage) / 100
+    ? cartTotal - (cartTotal * discountedPercentage) / 100
     : cartTotal;
 
   res.send(finalPrice.toString());
@@ -46,9 +46,9 @@ app.get('/estimate-delivery', (req, res) => {
   let distance = parseFloat(req.query.distance);
 
   let deliveryTime;
-  if (shippingMethod === 'Standard') {
+  if (shippingMethod === 'standard') {
     deliveryTime = Math.ceil(distance / 50);
-  } else if (shippingMethod === 'Express') {
+  } else if (shippingMethod === 'express') {
     deliveryTime = Math.ceil(distance / 100);
   }
 
